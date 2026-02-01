@@ -1,0 +1,130 @@
+abstract class DioAccount {
+  private readonly name: string
+  private readonly accountNumber: number
+  private balance: number = 0
+  private status: boolean = true
+
+  constructor(name: string, accountNumber: number){
+    this.name = name
+    this.accountNumber = accountNumber
+  }
+
+  getName = (): string => {
+    return this.name
+  }
+
+  deposit = (tipo:string, deposito:number): void => {
+    if(this.validateStatus()){
+      if(tipo === 'NovaAccount')
+      {
+        this.balance += deposito+10
+        console.log('Voce depositou\nNovo valor: '+this.balance)
+      }
+      else{
+        this.balance += deposito
+        console.log('Voce depositou\nNovo valor: '+this.balance)
+      }
+    }
+  }
+
+  withdraw = (sacando:number): void => {
+    if(this.validateStatus())
+    {
+      if(this.balance > sacando)
+      {
+        this.balance -= sacando
+        console.log('Voce sacou: '+sacando)
+        console.log('Novo saldo: '+this.balance)
+      }
+      else{
+        throw new Error('Saldo insuficiente')
+      }
+    }
+  }
+
+  getBalance = (): void => {
+    console.log(this.balance)
+  }
+
+  getStatus = (): boolean => {
+    return this.status
+  }
+
+  private validateStatus = (): boolean => {
+    if (this.status) {
+      return this.status
+    }
+
+    throw new Error('Conta inválida')
+  }
+}
+
+class CompanyAccount extends DioAccount {
+
+  constructor(name: string, accountNumber: number){
+    super(name, accountNumber)
+  }
+
+  getLoan = (valor:number): void => {
+    if(this.getStatus())
+    {
+      this.deposit(this.getClass(), valor)
+      console.log('Voce pegou um empréstimo')
+    }
+    else{
+      this.getStatus()
+    }
+  }
+
+  getClass = (): string => {
+    return "CompanyAccount"
+  }
+}
+
+class PeopleAccount extends DioAccount {
+  doc_id: number
+
+  constructor(name: string, accountNumber: number, doc_id: number){
+    super(name, accountNumber)
+    this.doc_id = doc_id
+  }
+
+   getClass = (): string => {
+    return 'PeopleAccount'
+  }
+}
+
+class NovaAccount extends DioAccount {
+
+  constructor(name:string, accountNumber:number) {
+     super(name, accountNumber)
+  }
+
+  getClass = (): string => {
+    return 'NovaAccount'
+  }
+}
+
+
+/*depositos*/
+const peopleAccount: PeopleAccount = new PeopleAccount('Nath', 10, 5)
+console.log(peopleAccount)
+peopleAccount.deposit(peopleAccount.getClass(), 10)
+const companyAccount: CompanyAccount = new CompanyAccount('DIO', 20)
+companyAccount.deposit(companyAccount.getClass(),20)
+console.log(companyAccount)
+const novaAccount: NovaAccount = new NovaAccount('Michel', 51)
+novaAccount.deposit(novaAccount.getClass(), 30)
+console.log(novaAccount)
+
+/*saques*/
+
+peopleAccount.withdraw(5)
+console.log(peopleAccount)
+companyAccount.withdraw(15)
+
+companyAccount.getLoan(5000)
+companyAccount.getBalance()
+
+novaAccount.withdraw(25)
+novaAccount.getBalance()
