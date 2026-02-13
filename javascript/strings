@@ -1,0 +1,15 @@
+//interpolação de strings
+
+const meunome = 'michel aguiar'
+
+console.log(`ola ${meunome}`);
+
+/*permite colocar variaveis no meio de strings*/
+
+tamanho de strings
+
+console.log(meunome.length) /*imprime 13, que é o tamanho da string "meunome"*/
+
+
+/*simples concatenação*/
+console.log("meu nome é " + meunome)
