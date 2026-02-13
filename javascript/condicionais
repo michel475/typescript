@@ -1,0 +1,30 @@
+const nome = 'michel';
+
+
+if(nome === 'michel){
+  console.log('voce é o michel')
+} else{
+  console.log('voce nao é o michel')
+}
+
+const idade = 20
+if(idade > 20){
+  console.log('maior que 20');
+} else if(idade < 20) {
+  console.log('menor que 20');
+} else{
+  console.log('tem exatamente 20');
+}
+
+const numero = 0;
+switch(numero) {
+  case 0:
+    console.log('tudo normar');
+    break;
+  case 1:
+    console.log('ninguem ta puro nao');
+    break;
+  default:
+    console.log('nem normar e possivelmente puro');
+    break;
+}
