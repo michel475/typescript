@@ -1,0 +1,31 @@
+formas de escrever function em javascript
+
+//maneira normal
+function nome_funcao() {
+  //ações que a funcao realiza
+}
+
+
+//declarando recebendo uma funcao
+const nome_funcao = function(nome) {
+  console.log(nome)
+}
+
+
+//somente 1 parametro
+const nome_funcao = nome => {
+  console.log(nome)
+}
+
+
+//arrow function
+const nome_funcao = (nome) => {
+  console.log(nome)
+}
+
+
+//declarando vazio e então inserindo o corpo
+nome_funcao();
+function nome_funcao(nome) {
+  console.log(nome)
+}
